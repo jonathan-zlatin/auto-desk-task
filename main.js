@@ -70,7 +70,7 @@ app.get('/tweets', async (req, res) => {
     }
 });
 
-module.exports = app;
+// module.exports = app;
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

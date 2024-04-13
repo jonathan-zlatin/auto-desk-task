@@ -58,15 +58,9 @@ The code for this project is hosted on GitHub: [auto-desk-task](https://github.c
 
 ## Dependencies
 
-- axios: ^1.6.8
-- crypto: ^1.0.1
-- express: ^4.19.2
-- needle: ^3.3.1
-- oauth-1.0a: ^2.2.6
+- axios: ^0.24.0
+- express: ^4.17.1
 - os-utils: ^0.0.14
-- systeminformation: ^5.22.7
-- twit: ^2.2.11
-- twitter-lite: ^1.1.0
 
 ---
 

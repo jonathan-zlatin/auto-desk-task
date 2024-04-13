@@ -43,7 +43,7 @@ app.get('/tweets', async (req, res) => {
 
         // Set up request headers with Bearer Token
         const headers = {
-            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAJ8ztQEAAAAAd1UEAbrqOkS8EFQM5Y7LW4VYhWg%3Dhyvj0KP2St61Kv3vVGnMyPWbhO1Ko6Oqb7fbPSxJ7jqUtvGliZ', // Replace with your Bearer Token
+            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAJ8ztQEAAAAAd1UEAbrqOkS8EFQM5Y7LW4VYhWg%3Dhyvj0KP2St61Kv3vVGnMyPWbhO1Ko6Oqb7fbPSxJ7jqUtvGliZ',
             'User-Agent': 'My Twitter App v1.0.0' // Add a User-Agent header as required by Twitter API
         };
 

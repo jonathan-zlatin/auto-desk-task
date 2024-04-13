@@ -1,0 +1,25 @@
+{
+  "name": "auto-desk-task",
+  "version": "1.0.0",
+  "description": "",
+  "main": "first_root.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jonathan-zlatin/auto-desk-task.git"
+  },
+  "private": true,
+  "dependencies": {
+    "axios": "^1.6.8",
+    "crypto": "^1.0.1",
+    "express": "^4.19.2",
+    "needle": "^3.3.1",
+    "oauth-1.0a": "^2.2.6",
+    "os-utils": "^0.0.14",
+    "systeminformation": "^5.22.7",
+    "twit": "^2.2.11",
+    "twitter-lite": "^1.1.0"
+  }
+}

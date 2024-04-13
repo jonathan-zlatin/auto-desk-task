@@ -46,7 +46,7 @@ app.get('/tweets', async (req, res) => {
         // Set up request headers with Bearer Token
         const headers = {
             'Authorization': `Bearer ${token}`,
-            'User-Agent': 'v2RecentSearchJS' // User Agent as required by the API
+            'User-Agent': 'v2RecentSearchJS' // User Agent - as required by the API
         };
 
         // Make request to Twitter API v2

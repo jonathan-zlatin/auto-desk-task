@@ -38,13 +38,15 @@ app.get('/tweets', async (req, res) => {
     try {
         const query = req.query.query;
         if (!query) {
-            return res.status(400).json({error: 'Query parameter is required'});
+            return res.status(400).json({ error: 'Query parameter is required' });
         }
+
+        const token = process.env.BEARER_TOKEN; // Get bearer token from environment variable (IN Heroku)
 
         // Set up request headers with Bearer Token
         const headers = {
-            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAJ8ztQEAAAAAZVkGZiCc5ltJ6JDU0Ab9I5VEx1s%3DMIrnpSeDY36uXdjiwoaTX7O4bsbeXgezdr7sSqgnqFVigCG1Yh',
-            'User-Agent': 'My Twitter App v1.0.0' // Add a User-Agent header as required by Twitter API
+            'Authorization': `Bearer ${token}`,
+            'User-Agent': 'v2RecentSearchJS' // User Agent as required by the API
         };
 
         // Make request to Twitter API v2
@@ -64,7 +66,7 @@ app.get('/tweets', async (req, res) => {
         res.json(tweets.slice(0, 10));
     } catch (error) {
         console.error('Error fetching tweets:', error.response ? error.response.data : error.message);
-        res.status(500).json({error: 'Failed to fetch tweets'});
+        res.status(500).json({ error: 'Failed to fetch tweets' });
     }
 });
 

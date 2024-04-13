@@ -2,22 +2,7 @@ const express = require('express');
 const axios = require('axios');
 const os = require('os');
 const osUtils = require('os-utils');
-const OAuth = require('oauth-1.0a');
-const crypto = require('crypto');
-
 const app = express();
-
-// Initialize OAuth1 credentials
-const oauth = OAuth({
-    consumer: {
-        key: '6OqdZP3BIJ0Li50irXBdgpFrV',
-        secret: 'PL7dLOq8Lvw0oVns1OfHbSlOiyH5fZ3LmHRsR7AJ5DdgWoZJqG'
-    },
-    signature_method: 'HMAC-SHA1',
-    hash_function(base_string, key) {
-        return crypto.createHmac('sha1', key).update(base_string).digest('base64');
-    }
-});
 
 // GET /health endpoint
 app.get('/health', (req, res) => {
@@ -48,7 +33,7 @@ app.get('/health', (req, res) => {
     }
 });
 
-// Endpoint to fetch tweets using OAuth1 authentication
+// Endpoint to fetch tweets using Bearer Token authentication
 app.get('/tweets', async (req, res) => {
     try {
         const query = req.query.query;
@@ -56,18 +41,15 @@ app.get('/tweets', async (req, res) => {
             return res.status(400).json({error: 'Query parameter is required'});
         }
 
-        // Generate OAuth1 headers
-        const requestData = {
-            url: `https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(query)}`,
-            method: 'GET',
+        // Set up request headers with Bearer Token
+        const headers = {
+            'Authorization': 'Bearer AAAAAAAAAAAAAAAAAAAAAJ8ztQEAAAAAd1UEAbrqOkS8EFQM5Y7LW4VYhWg%3Dhyvj0KP2St61Kv3vVGnMyPWbhO1Ko6Oqb7fbPSxJ7jqUtvGliZ', // Replace with your Bearer Token
+            'User-Agent': 'My Twitter App v1.0.0' // Add a User-Agent header as required by Twitter API
         };
-        const authHeader = oauth.toHeader(oauth.authorize(requestData));
 
-        // Make request with OAuth1 headers
-        const response = await axios.get(requestData.url, {
-            headers: {
-                ...authHeader
-            }
+        // Make request to Twitter API v2
+        const response = await axios.get(`https://api.twitter.com/2/tweets/search/recent?query=${encodeURIComponent(query)}`, {
+            headers: headers
         });
 
         // Extract necessary information and format the response
@@ -75,7 +57,6 @@ app.get('/tweets', async (req, res) => {
             return {
                 id: tweet.id,
                 text: tweet.text,
-                // Add more fields as needed
             };
         });
 
@@ -86,6 +67,7 @@ app.get('/tweets', async (req, res) => {
         res.status(500).json({error: 'Failed to fetch tweets'});
     }
 });
+
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

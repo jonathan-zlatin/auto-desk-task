@@ -41,7 +41,7 @@ app.get('/tweets', async (req, res) => {
             return res.status(400).json({ error: 'Query parameter is required' });
         }
 
-        const token = process.env.BEARER_TOKEN; // Get bearer token from environment variable (IN Heroku)
+        const token = process.env.BEARER_TOKEN; // Get bearer token from environment variable (saved in Heroku)
 
         // Set up request headers with Bearer Token
         const headers = {
